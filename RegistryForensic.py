@@ -1,3 +1,5 @@
+#https://stackoverflow.com/questions/5227107/python-code-to-read-registry
+
 from winreg import *
 import string
 import os
@@ -32,7 +34,6 @@ def parse_key(key):
 
     return partial_key, root_hive
 
-
 def get_sub_keys(key):
     partial_key, root_hive = parse_key(key)
 
@@ -45,7 +46,6 @@ def get_sub_keys(key):
                     yield sub_key_name
             except WindowsError:
                 pass
-
 
 def get_values(key, fields):
     partial_key, root_hive = parse_key(key)
@@ -61,7 +61,6 @@ def get_values(key, fields):
                     pass
 
             return data
-
 
 def get_value(key, field):
     values = get_values(key, [field])
@@ -184,8 +183,6 @@ document.add_heading('Comandos no executar', level=1)
 for COMMAND in EXEC_COMMANDS:
     paragraph = document.add_paragraph(COMMAND)
     paragraph.style = 'List Bullet'
-
-INFO_BIOS = get_values(INFOBIOS_KEY, ["BIOSReleaseDate","BaseBoardManufacturer","BIOSVendor","BIOSVersion","SystemProductName"])
 
 document.add_heading('Dispositivos USB', level=1)
 for DEVICE in DEVICES:
